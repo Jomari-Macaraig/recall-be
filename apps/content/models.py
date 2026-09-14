@@ -12,6 +12,14 @@ class Section(Audit):
 
     name = models.CharField(max_length=32)
 
+    def __str__(self):
+        """Human-readable representation."""
+        return self.name
+
+    def __repr__(self):
+        """Unambiguous developer representation."""
+        return self.name
+
 
 class SubSection(Audit):
     """A subdivision within a ``Section``, used to further group lessons.
@@ -22,6 +30,14 @@ class SubSection(Audit):
 
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     name = models.CharField(max_length=32)
+
+    def __str__(self):
+        """Human-readable representation."""
+        return self.name
+
+    def __repr__(self):
+        """Unambiguous developer representation."""
+        return self.name
 
 
 class Lesson(UserAudit):
@@ -35,9 +51,17 @@ class Lesson(UserAudit):
 
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     subsection = models.ForeignKey(
-        SubSection, on_delete=models.SET_NULL, null=True
+        SubSection, on_delete=models.SET_NULL, null=True, blank=True
     )
     title = models.CharField(max_length=32)
     content = models.TextField()
     is_public = models.BooleanField(default=False)
     is_published = models.BooleanField(default=False)
+
+    def __str__(self):
+        """Human-readable representation."""
+        return self.title
+
+    def __repr__(self):
+        """Unambiguous developer representation."""
+        return self.title
