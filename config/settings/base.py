@@ -42,18 +42,18 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-DJANGO_APPS = [
+DJANGO_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-]
+)
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = ("rest_framework",)
 
-LOCAL_APPS = ["apps.content"]
+LOCAL_APPS = ("apps.content",)
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
