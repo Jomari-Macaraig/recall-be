@@ -166,3 +166,6 @@ celerybeat-schedule.db
 media/
 
 .env
+
+# Personal teaching notes generated via /teach
+notes/
