@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from apps.content.models import Lesson
-from apps.content.api.serializers import LessonSerializer
+from apps.content.api.serializers import LessonListSerializer, LessonSerializer
 
 
 class LessonListAPIView(ListAPIView):
@@ -11,7 +11,7 @@ class LessonListAPIView(ListAPIView):
     """
 
     queryset = Lesson.objects.filter(is_active=True)
-    serializer_class = LessonSerializer
+    serializer_class = LessonListSerializer
 
 
 class LessonRetrieveAPIView(RetrieveAPIView):

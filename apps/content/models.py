@@ -53,7 +53,7 @@ class Lesson(UserAudit):
     subsection = models.ForeignKey(
         SubSection, on_delete=models.SET_NULL, null=True, blank=True
     )
-    title = models.CharField(max_length=32)
+    title = models.CharField(max_length=128)
     content = models.TextField()
     is_public = models.BooleanField(default=False)
     is_published = models.BooleanField(default=False)
