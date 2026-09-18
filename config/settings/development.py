@@ -1,9 +1,8 @@
+import os
+
 from config.settings.base import *
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
 
-CORS_ALLOWED_ORIGINS = [
-    "http://0.0.0.0:5173",
-    "http://localhost:5173",
-]
+CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ALLOWED_ORIGINS", "").split(",")

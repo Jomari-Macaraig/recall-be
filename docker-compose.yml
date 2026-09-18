@@ -15,11 +15,10 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8081
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8081 --workers 2 --reload
     volumes:
       - .:/app
-    ports:
-      - "8081:8081"
+      - static_volume:/app/staticfiles
     env_file:
       - .env
     environment:
@@ -28,5 +27,17 @@ services:
       db:
         condition: service_healthy
 
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./scripts/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - static_volume:/app/staticfiles:ro
+    depends_on:
+      - web
+
 volumes:
   postgres_data:
+  static_volume:
